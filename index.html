@@ -3,15 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Language Dictionary</title>
+    <title>Maranao Language Dictionary</title>
 </head>
 <body>
-    <h1>Language Dictionary</h1>
-    <label for="word">Enter a word:</label>
-    <input type="text" id="word">
+    <h1>Maranao Language Dictionary</h1>
+    <select id="sourceLanguage">
+        <option value="eng">English</option>
+        <option value="tgl">Filipino</option>
+        <option value="mrw">Maranao</option>
+        <option value="ceb">Bisaya</option>
+    </select>
+    to
+    <select id="targetLanguage">
+        <option value="mrw">Maranao</option>
+        <option value="eng">English</option>
+        <option value="tgl">Filipino</option>
+        <option value="ceb">Bisaya</option>
+    </select>
+    
+    <br><br>
+    <input type="text" id="searchWord" placeholder="Enter a word...">
     <button onclick="translateWord()">Translate</button>
-    <div id="translation"></div>
+    <div id="result"></div>
 
-    <script src="script.js"></script>
+    <script src="js/dictionary.js"></script>
 </body>
 </html>
