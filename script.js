@@ -8,7 +8,7 @@ function translateWord() {
         return;
     }
 
-    var apiUrl = `/translate?from=${sourceLang}&dest=${targetLang}&phrase=${word}`;
+    var apiUrl = `http://localhost:3000/translate?from=${sourceLang}&dest=${targetLang}&phrase=${word}`;
 
     fetch(apiUrl)
         .then(response => response.json())

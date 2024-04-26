@@ -6,6 +6,26 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 
+// CORS middleware
+app.use((req, res, next) => {
+    const allowedOrigins = ['https://maranao-dictionary.netlify.app', 'http://localhost:3000']; // Add your Netlify domain here
+    const origin = req.headers.origin;
+
+    if (allowedOrigins.includes(origin)) {
+        res.setHeader('Access-Control-Allow-Origin', origin);
+    }
+
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    res.setHeader('Access-Control-Allow-Credentials', true);
+
+    if (req.method === 'OPTIONS') {
+        res.sendStatus(200);
+    } else {
+        next();
+    }
+});
+
 app.get('/translate', async (req, res) => {
     const { from, dest, phrase } = req.query;
     const apiUrl = `https://glosbe.com/gapi/translate?from=${from}&dest=${dest}&format=json&phrase=${phrase}&pretty=true`;
