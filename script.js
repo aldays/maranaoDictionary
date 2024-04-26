@@ -1,6 +1,14 @@
 function translateWord() {
-    var word = document.getElementById('word').value.trim();
-    var apiUrl = `/translate?from=eng&dest=mrw&phrase=${word}`;
+    var sourceLang = document.getElementById('sourceLanguage').value;
+    var targetLang = document.getElementById('targetLanguage').value;
+    var word = document.getElementById('searchWord').value.trim();
+
+    if (!word) {
+        document.getElementById('translation').textContent = 'Please enter a word to translate.';
+        return;
+    }
+
+    var apiUrl = `/translate?from=${sourceLang}&dest=${targetLang}&phrase=${word}`;
 
     fetch(apiUrl)
         .then(response => response.json())
