@@ -2,15 +2,14 @@ function translateWord() {
     var sourceLang = document.getElementById('sourceLanguage').value;
     var targetLang = document.getElementById('targetLanguage').value;
     var word = document.getElementById('searchWord').value.trim();
+    var backendUrl = 'https://maranao-dictionary.netlify.app'; // Update with your Netlify backend domain
 
     if (!word) {
         document.getElementById('translation').textContent = 'Please enter a word to translate.';
         return;
     }
 
-    var apiUrl = `http://localhost:3000/translate?from=${sourceLang}&dest=${targetLang}&phrase=${word}`;
-
-    fetch(apiUrl)
+    fetch(`${backendUrl}/translate?from=${sourceLang}&dest=${targetLang}&phrase=${word}`)
         .then(response => response.json())
         .then(data => {
             if (data && data.tuc && data.tuc.length > 0 && data.tuc[0].phrase) {
